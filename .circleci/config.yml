@@ -38,20 +38,17 @@ jobs:
       - attach_workspace:
           at: ~/ec2_sample
       - run:
-          name: Bundle install
-          command: bundle install --path ./vendor/bundle
-      - run:
           name: hoge ruby
           command: bundle exec ruby hoge.rb
+      - persist_to_workspace:
+          root: .
+          paths: .
   run-command:
     executor:
       name: default
     steps:
       - attach_workspace:
           at: ~/ec2_sample
-      - run:
-          name: Bundle install
-          command: bundle install --path ./vendor/bundle
       - run:
           name: hoge ruby
           command: bundle exec ruby ec2_run_command.rb
