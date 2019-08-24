@@ -38,7 +38,7 @@ jobs:
       - attach_workspace:
           at: ~/ec2_sample
       - restore_cache:
-          key:
+          keys:
             - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - gf-bundle-1-{{ .Branch }}-
             - gf-bundle-1-
@@ -55,7 +55,7 @@ jobs:
       - attach_workspace:
           at: ~/ec2_sample
       - restore_cache:
-          key:
+          keys:
             - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - gf-bundle-1-{{ .Branch }}-
             - gf-bundle-1-
