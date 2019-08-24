@@ -28,6 +28,7 @@ jobs:
           key: gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
+            - /usr/local/bundle/bin/bundler
       - persist_to_workspace:
           root: .
           paths: .
