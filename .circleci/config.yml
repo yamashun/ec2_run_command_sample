@@ -28,7 +28,6 @@ jobs:
           key: gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
             - ./vendor/bundle
-            - /usr/local/bundle/bin/bundler
       - persist_to_workspace:
           root: .
           paths: .
@@ -43,6 +42,9 @@ jobs:
             - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - gf-bundle-1-{{ .Branch }}-
             - gf-bundle-1-
+      - run:
+          name: bundler install
+          command: gem install bundler:2.0.1
       - run:
           name: hoge ruby
           command: bundle exec ruby hoge.rb
@@ -60,6 +62,9 @@ jobs:
             - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
             - gf-bundle-1-{{ .Branch }}-
             - gf-bundle-1-
+      - run:
+          name: bundler install
+          command: gem install bundler:2.0.1
       - run:
           name: hoge ruby
           command: bundle exec ruby ec2_run_command.rb
