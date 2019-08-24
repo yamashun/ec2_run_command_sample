@@ -6,7 +6,7 @@ executors:
       - image: ruby:2.6.3-stretch
         environment:
           BUNDLE_GEMFILE: /root/ec2_sample/Gemfile
-          BUNDLE_PATH: /root/ec2_sample/vendor/bundle/ruby/2.6.3
+          BUNDLE_PATH: /root/ec2_sample/vendor/bundle/ruby/2.6.0
 jobs:
   checkout-code:
     executor:
