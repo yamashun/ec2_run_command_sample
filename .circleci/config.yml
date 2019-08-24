@@ -20,7 +20,7 @@ jobs:
             - gf-bundle-1-
       - run:
           name: Bundle install
-          command: bin/bundle install --path=./vendor/bundle
+          command: bundle install --path=./vendor/bundle
       - save_cache:
           key: gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
           paths:
@@ -36,7 +36,7 @@ jobs:
           at: ~/ec2_sample
       - run:
           name: Bundle install
-          command: bin/bundle install --path ./vendor/bundle
+          command: bundle install --path ./vendor/bundle
       - run:
           name: hoge ruby
           command: bundle exec ruby hoge.rb
@@ -48,7 +48,7 @@ jobs:
           at: ~/ec2_sample
       - run:
           name: Bundle install
-          command: bin/bundle install --path ./vendor/bundle
+          command: bundle install --path ./vendor/bundle
       - run:
           name: hoge ruby
           command: bundle exec ruby ec2_run_command.rb
