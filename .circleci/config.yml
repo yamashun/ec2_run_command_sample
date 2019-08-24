@@ -37,6 +37,11 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/ec2_sample
+      - restore_cache:
+          key:
+            - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gf-bundle-1-{{ .Branch }}-
+            - gf-bundle-1-
       - run:
           name: hoge ruby
           command: bundle exec ruby hoge.rb
@@ -49,6 +54,11 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/ec2_sample
+      - restore_cache:
+          key:
+            - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - gf-bundle-1-{{ .Branch }}-
+            - gf-bundle-1-
       - run:
           name: hoge ruby
           command: bundle exec ruby ec2_run_command.rb
