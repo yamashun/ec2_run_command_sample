@@ -19,6 +19,9 @@ jobs:
             - gf-bundle-1-{{ .Branch }}-
             - gf-bundle-1-
       - run:
+          name: bundler install
+          command: gem install bundler:2.0.1
+      - run:
           name: Bundle install
           command: bundle install --path=./vendor/bundle
       - save_cache:
