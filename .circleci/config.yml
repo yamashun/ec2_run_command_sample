@@ -57,6 +57,7 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/ec2_sample
+      - checkout
       - restore_cache:
           keys:
             - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
@@ -66,16 +67,13 @@ jobs:
           name: bundler install
           command: gem install bundler:2.0.1
       - run:
-          name: hoge ruby
+          name: Bundle install
+          command: bundle install --path=./vendor/bundle
+      - run:
+          name: hoge deploy
           command: bundle exec ruby ec2_run_command.rb
 
 workflows:
   ec2-ci:
     jobs:
-      - checkout-code
-      - hoge-job:
-          requires:
-            - checkout-code
       - run-command:
-          requires:
-            - hoge-job
