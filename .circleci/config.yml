@@ -8,49 +8,6 @@ executors:
           BUNDLE_GEMFILE: /root/ec2_sample/Gemfile
           BUNDLE_PATH: /root/ec2_sample/vendor/bundle/ruby/2.6.0
 jobs:
-  checkout-code:
-    executor:
-      name: default
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - gf-bundle-1-{{ .Branch }}-
-            - gf-bundle-1-
-      - run:
-          name: bundler install
-          command: gem install bundler:2.0.1
-      - run:
-          name: Bundle install
-          command: bundle install --path=./vendor/bundle
-      - save_cache:
-          key: gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-          paths:
-            - ./vendor/bundle
-      - persist_to_workspace:
-          root: .
-          paths: .
-  hoge-job:
-    executor:
-      name: default
-    steps:
-      - attach_workspace:
-          at: ~/ec2_sample
-      - restore_cache:
-          keys:
-            - gf-bundle-1-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
-            - gf-bundle-1-{{ .Branch }}-
-            - gf-bundle-1-
-      - run:
-          name: bundler install
-          command: gem install bundler:2.0.1
-      - run:
-          name: hoge ruby
-          command: bundle exec ruby hoge.rb
-      - persist_to_workspace:
-          root: .
-          paths: .
   run-command:
     executor:
       name: default
@@ -67,10 +24,10 @@ jobs:
           name: bundler install
           command: gem install bundler:2.0.1
       - run:
-          name: Bundle install
+          name: bundle install
           command: bundle install --path=./vendor/bundle
       - run:
-          name: hoge deploy
+          name: deploy
           command: bundle exec ruby ec2_run_command.rb
 
 workflows:
