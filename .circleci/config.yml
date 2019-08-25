@@ -76,4 +76,4 @@ jobs:
 workflows:
   ec2-ci:
     jobs:
-      - run-command:
+      - run-command
