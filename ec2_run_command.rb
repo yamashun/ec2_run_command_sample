@@ -10,7 +10,10 @@ Aws::SSM::Client.new.send_command(
   document_name: "AWS-RunShellScript",
   instance_ids: [ENV['EC2_INSTANCE_ID']],
   parameters: {
-    commands: ["echo Hello > /tmp/hello.txt"],
+    commands: [
+      "whoami > /tmp/whoami1.txt",
+      "su - ubuntu && whoami > /tmp/whoami2.txt"
+    ],
     executionTimeout:["3600"]
   },
   timeout_seconds: 600,
